@@ -84,3 +84,18 @@ Script path: C:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.ps1
 [2026-02-22 16:01:00] Stack trace: at <ScriptBlock>, C:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.ps1: line 39
 [22/02/2026 16:01:00.06] ERROR: PowerShell exited with code 1 
 ============================================== 
+============================================== 
+[22/02/2026 16:04:35.52] BAT started 
+Working directory: C:\projects\lua\marker_helpers\alt_w_s_enter\ 
+Script path: C:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.ps1 
+[2026-02-22 16:04:42] PS1 script started
+[2026-02-22 16:04:44] DaVinci Resolve is running (PID: 2832060)
+[2026-02-22 16:04:44] Running fill_last_marker via Resolve Python API...
+[2026-02-22 16:04:45] PYTHON: Project: feb 2
+[2026-02-22 16:04:45] PYTHON: Timeline: main
+[2026-02-22 16:04:45] PYTHON: Found 941 subtitle(s)
+[2026-02-22 16:04:45] PYTHON: Found 69 marker(s)
+[2026-02-22 16:04:45] PYTHON: DONE: Frame 58464 [Red] <- "here, something happened."
+[2026-02-22 16:04:45] fill_last_marker completed successfully
+[22/02/2026 16:04:45.92] SUCCESS: PowerShell exited with code 0 
+============================================== 
