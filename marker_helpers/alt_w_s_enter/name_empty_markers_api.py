@@ -83,16 +83,26 @@ print(f"Found {len(markers)} marker(s)")
 # Sort frame IDs ascending (process in timeline order)
 frames = sorted(markers.keys())
 
-# Pattern to match Resolve's default marker names like "Marker 1", "Marker 42", etc.
-DEFAULT_MARKER_NAME = re.compile(r"^Marker\s+\d+$", re.IGNORECASE)
+# Pattern to match Resolve's default marker names:
+# "Marker 1", "Marker 42", "Yellow Marker", "Blue Marker", "Red Marker", etc.
+DEFAULT_MARKER_NAME = re.compile(
+    r"^(Marker\s+\d+|"                          # "Marker 1", "Marker 42"
+    r"(Red|Blue|Green|Yellow|Cyan|Pink|Purple|Fuchsia|Rose|Lavender|Sky|Mint|Lemon|Sand|Cocoa|Cream)\s+Marker)$",  # "Yellow Marker", "Blue Marker"
+    re.IGNORECASE
+)
 
 
 def is_unnamed(name):
-    """Check if a marker name is empty or a default auto-generated name."""
+    """Check if a marker name is empty or a default auto-generated name.
+    Names wrapped in [...] are script-sourced and should NOT be replaced."""
     if not name or not name.strip():
         return True
-    # Resolve auto-names markers as "Marker 1", "Marker 2", etc.
-    if DEFAULT_MARKER_NAME.match(name.strip()):
+    name = name.strip()
+    # Names in brackets are from our script — already processed, skip
+    if name.startswith("[") and "]" in name:
+        return False
+    # Resolve auto-names markers as "Marker 1", "Yellow Marker", etc.
+    if DEFAULT_MARKER_NAME.match(name):
         return True
     return False
 
