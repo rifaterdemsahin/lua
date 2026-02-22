@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post-Production TODO — feb 2 (2026-02-22)</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+      padding: 2rem 1rem;
+      text-align: center;
+      border-bottom: 2px solid #e94560;
+    }
+
+    header h1 { font-size: 2rem; color: #e94560; margin-bottom: 0.5rem; }
+    header p  { color: #a8b2d8; font-size: 1rem; }
+
+    /* ── Progress bar ── */
+    .progress-wrap {
+      max-width: 960px;
+      margin: 1.5rem auto 0;
+      padding: 0 1rem;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+      font-size: 0.9rem;
+      color: #a8b2d8;
+    }
+
+    .progress-header strong { color: #ccd6f6; font-size: 1rem; }
+
+    .progress-bar-bg {
+      background: #16213e;
+      border-radius: 8px;
+      height: 12px;
+      overflow: hidden;
+      border: 1px solid #0f3460;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #27ae60, #2ecc71);
+      border-radius: 8px;
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+
+    /* ── Filter bar ── */
+    .filter-bar {
+      max-width: 960px;
+      margin: 1.2rem auto 0;
+      padding: 0 1rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-bar span { color: #a8b2d8; font-size: 0.85rem; margin-right: 0.3rem; }
+
+    .filter-btn {
+      border: none;
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+      font-family: inherit;
+    }
+
+    .filter-btn:active { transform: scale(0.95); }
+    .filter-btn.inactive { opacity: 0.35; }
+
+    .btn-all    { background: #4a5568; color: #e0e0e0; }
+    .btn-red    { background: #c0392b; color: #fff; }
+    .btn-yellow { background: #d4ac0d; color: #1a1a2e; }
+    .btn-blue   { background: #2980b9; color: #fff; }
+    .btn-cyan   { background: #17a589; color: #fff; }
+    .btn-green  { background: #27ae60; color: #fff; }
+
+    .filter-btn.hide-done { background: #0f3460; color: #a8b2d8; margin-left: auto; }
+
+    /* ── Main content ── */
+    main {
+      max-width: 960px;
+      margin: 1.5rem auto 3rem;
+      padding: 0 1rem;
+    }
+
+    section { margin-bottom: 2.5rem; }
+
+    section h2 {
+      font-size: 1.3rem;
+      border-left: 4px solid;
+      padding-left: 0.75rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    section h2 .section-count {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: #a8b2d8;
+      margin-left: auto;
+    }
+
+    .sec-red    h2 { border-color: #e74c3c; color: #e74c3c; }
+    .sec-yellow h2 { border-color: #f1c40f; color: #f1c40f; }
+    .sec-blue   h2 { border-color: #3498db; color: #3498db; }
+    .sec-cyan   h2 { border-color: #1abc9c; color: #1abc9c; }
+    .sec-green  h2 { border-color: #2ecc71; color: #2ecc71; }
+
+    /* ── TODO items ── */
+    .todo-list { list-style: none; }
+
+    .todo-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.5rem;
+      background: #16213e;
+      border: 1px solid #0f3460;
+      border-radius: 6px;
+      transition: opacity 0.2s, background 0.2s;
+    }
+
+    .todo-item.done {
+      opacity: 0.45;
+      background: #121225;
+    }
+
+    .todo-item.done .todo-name { text-decoration: line-through; color: #4a5568; }
+
+    .todo-item input[type="checkbox"] {
+      margin-top: 0.25rem;
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      cursor: pointer;
+      accent-color: #27ae60;
+    }
+
+    .todo-body { flex: 1; min-width: 0; }
+
+    .todo-meta {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      margin-bottom: 0.2rem;
+      flex-wrap: wrap;
+    }
+
+    .tc-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: #0f3460;
+      color: #a8b2d8;
+      padding: 0.1rem 0.45rem;
+      border-radius: 4px;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .marker-num {
+      font-size: 0.7rem;
+      color: #4a5568;
+    }
+
+    .todo-name {
+      font-size: 0.95rem;
+      color: #ccd6f6;
+      margin-bottom: 0.2rem;
+      word-break: break-word;
+    }
+
+    .todo-note {
+      font-size: 0.82rem;
+      color: #a8b2d8;
+      word-break: break-word;
+    }
+
+    .todo-note::before { content: "📝 "; }
+
+    /* ── Hidden by filter ── */
+    .todo-item.filtered { display: none; }
+    section.filtered    { display: none; }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #4a5568;
+      font-size: 0.85rem;
+      border-top: 1px solid #16213e;
+    }
+
+    footer a { color: #e94560; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🎬 Post-Production TODO</h1>
+  <p>Project: <strong>feb 2</strong> &nbsp;·&nbsp; Timeline: <strong>main</strong> &nbsp;·&nbsp; Exported: <strong>2026-02-22 17:21:53</strong> &nbsp;·&nbsp; 85 markers · 60 fps</p>
+</header>
+
+<div class="progress-wrap">
+  <div class="progress-header">
+    <span>Overall progress</span>
+    <strong id="progress-text">0 / 85 done</strong>
+  </div>
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="progress-bar"></div>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <span>Filter:</span>
+  <button class="filter-btn btn-all"    data-filter="all">All (85)</button>
+  <button class="filter-btn btn-red"    data-filter="red">🔴 Fix (44)</button>
+  <button class="filter-btn btn-yellow" data-filter="yellow">🟡 Add / Enhance (35)</button>
+  <button class="filter-btn btn-blue"   data-filter="blue">🔵 Background (3)</button>
+  <button class="filter-btn btn-cyan"   data-filter="cyan">🩵 Transition (2)</button>
+  <button class="filter-btn btn-green"  data-filter="green">🟢 Content (1)</button>
+  <button class="filter-btn hide-done"  id="toggle-done">Hide done</button>
+</div>
+
+<main>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       RED — Fix / Remove
+  ════════════════════════════════════════════════════════════════ -->
+  <section class="sec-red" id="sec-red">
+    <h2>🔴 Fix / Remove <span class="section-count">44 items</span></h2>
+    <ul class="todo-list">
+
+      <li class="todo-item" data-color="red" data-id="1">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:00:17:53</span><span class="marker-num">#1</span></div>
+          <div class="todo-name">[scaring people off.]</div>
+          <div class="todo-note">disappear resolve</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="5">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:02:03:44</span><span class="marker-num">#5</span></div>
+          <div class="todo-name">[anti-gravity, using cloth]</div>
+          <div class="todo-note">Claude text subtitle error</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="6">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:02:06:19</span><span class="marker-num">#6</span></div>
+          <div class="todo-name">[so everybody can scout their]</div>
+          <div class="todo-note">subtitle error — "scult your own reality"</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="12">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:03:35:50</span><span class="marker-num">#12</span></div>
+          <div class="todo-name">[cursor AI makes more sense.]</div>
+          <div class="todo-note">Top line — there is a problem</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="17">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:04:22:43</span><span class="marker-num">#17</span></div>
+          <div class="todo-name">[the room all the books all]</div>
+          <div class="todo-note">error — too early cut</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="18">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:04:26:28</span><span class="marker-num">#18</span></div>
+          <div class="todo-name">Remove the drawing tool</div>
+          <div class="todo-note">remove the drawing tool</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="21">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:05:38:48</span><span class="marker-num">#21</span></div>
+          <div class="todo-name">Remove the subtitles here</div>
+          <div class="todo-note">no audio fix</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="23">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:06:26:42</span><span class="marker-num">#23</span></div>
+          <div class="todo-name">Better timing on the disappear act</div>
+          <div class="todo-note">better transition from Erdem</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="24">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:06:50:45</span><span class="marker-num">#24</span></div>
+          <div class="todo-name">Red Marker</div>
+          <div class="todo-note">what can we do with the AI — add the image; our job is to find the use cases</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="27">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:08:08:16</span><span class="marker-num">#27</span></div>
+          <div class="todo-name">[is for you to figure out.]</div>
+          <div class="todo-note">there is an audio jump — make sure to resolve it</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="28">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:08:17:54</span><span class="marker-num">#28</span></div>
+          <div class="todo-name">[aero, the visual host]</div>
+          <div class="todo-note">too fast jump — make it better</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="32">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:08:53:18</span><span class="marker-num">#32</span></div>
+          <div class="todo-name">[The scene, the kitchen table, the screen]</div>
+          <div class="todo-note">REMOVE THIS FACIAL EXPRESSION</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="33">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:08:55:43</span><span class="marker-num">#33</span></div>
+          <div class="todo-name">[capture and the home network dashboard.]</div>
+          <div class="todo-note">SUBTITLE REMOVE</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="34">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:09:06:23</span><span class="marker-num">#34</span></div>
+          <div class="todo-name">[organize, distill and]</div>
+          <div class="todo-note">audio increase — check</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="39">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:11:24:17</span><span class="marker-num">#39</span></div>
+          <div class="todo-name">[need to pay money for the cloud if my]</div>
+          <div class="todo-note">subtitle error fix</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="40">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:11:33:49</span><span class="marker-num">#40</span></div>
+          <div class="todo-name">[different skills, coding, reasoning,]</div>
+          <div class="todo-note">remove the drawing tool from the right</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="43">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:12:02:41</span><span class="marker-num">#43</span></div>
+          <div class="todo-name">[This is a family oriented week.]</div>
+          <div class="todo-note">hobby visual</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="45">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:12:23:36</span><span class="marker-num">#45</span></div>
+          <div class="todo-name">[DeepSeek.]</div>
+          <div class="todo-note">(red flag — review clip)</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="46">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:12:23:57</span><span class="marker-num">#46</span></div>
+          <div class="todo-name">[DeepSeek.] (duplicate)</div>
+          <div class="todo-note">(red flag — review clip)</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="47">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:12:27:05</span><span class="marker-num">#47</span></div>
+          <div class="todo-name">[to be in charge and you]</div>
+          <div class="todo-note">fix the subtitle — "claude" in here</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="48">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:12:38:17</span><span class="marker-num">#48</span></div>
+          <div class="todo-name">[lightning bolt being]</div>
+          <div class="todo-note">add the music here — make sure new scene is coming up</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="50">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:12:55:06</span><span class="marker-num">#50</span></div>
+          <div class="todo-name">[You are going to see that you will be]</div>
+          <div class="todo-note">fix the greens in the hands</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="52">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:13:11:59</span><span class="marker-num">#52</span></div>
+          <div class="todo-name">[Visual, all visual, a toolbox where the]</div>
+          <div class="todo-note">remove the visual line</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="53">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:13:18:17</span><span class="marker-num">#53</span></div>
+          <div class="todo-name">[Internet Access Manager.]</div>
+          <div class="todo-note">remove the drawing board on the right</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="57">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:14:07:29</span><span class="marker-num">#57</span></div>
+          <div class="todo-name">[The main thing that I'm doing is I have]</div>
+          <div class="todo-note">remove the drawing tool on the right</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="58">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:14:15:29</span><span class="marker-num">#58</span></div>
+          <div class="todo-name">[to be able to drop the traffic that I]</div>
+          <div class="todo-note">blur the MAC addresses and show an example</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="59">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:14:47:14</span><span class="marker-num">#59</span></div>
+          <div class="todo-name">[looking at the device list because this]</div>
+          <div class="todo-note">add a cookie-based password protection</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="60">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:14:51:23</span><span class="marker-num">#60</span></div>
+          <div class="todo-name">[and I have all the]</div>
+          <div class="todo-note">audio too low</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="62">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:15:04:42</span><span class="marker-num">#62</span></div>
+          <div class="todo-name">[and make sure that you are always doing]</div>
+          <div class="todo-note">remove the drawing tool</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="63">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:15:10:36</span><span class="marker-num">#63</span></div>
+          <div class="todo-name">[most of the time this works]</div>
+          <div class="todo-note">remove the right-hand-side drawing</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="65">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:16:09:28</span><span class="marker-num">#65</span></div>
+          <div class="todo-name">[not work very, very easily.]</div>
+          <div class="todo-note">remove the drawing</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="66">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:16:14:24</span><span class="marker-num">#66</span></div>
+          <div class="todo-name">[here, something happened.]</div>
+          <div class="todo-note">remove the drawing tool on the right</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="68">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:16:21:42</span><span class="marker-num">#68</span></div>
+          <div class="todo-name">[Normally it was working. I should be able]</div>
+          <div class="todo-note">remove the drawing tool</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="69">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:16:22:29</span><span class="marker-num">#69</span></div>
+          <div class="todo-name">[to go down into the system and be able to]</div>
+          <div class="todo-note">tester code</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="72">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:17:15:01</span><span class="marker-num">#72</span></div>
+          <div class="todo-name">[shared this in other videos, you can]</div>
+          <div class="todo-note">remove the painter</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="73">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:17:22:49</span><span class="marker-num">#73</span></div>
+          <div class="todo-name">[of your workflows is failing, you will be]</div>
+          <div class="todo-note">remove the drawing tool</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="74">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:17:28:34</span><span class="marker-num">#74</span></div>
+          <div class="todo-name">[I'm using the memory palaces.]</div>
+          <div class="todo-note">audio jumps</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="79">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:21:14:44</span><span class="marker-num">#79</span></div>
+          <div class="todo-name">[and understanding what is happening in the background…]</div>
+          <div class="todo-note">remove the dead frame</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="80">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:21:22:05</span><span class="marker-num">#80</span></div>
+          <div class="todo-name">[using the simulation]</div>
+          <div class="todo-note">remove "bye bye!" — get your hands working</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="81">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:21:45:19</span><span class="marker-num">#81</span></div>
+          <div class="todo-name">[you are checking network authentication]</div>
+          <div class="todo-note">remove the drawing tool and add the Bloom's Taxonomy to the delivery pilot website</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="82">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:22:39:12</span><span class="marker-num">#82</span></div>
+          <div class="todo-name">[able to deploy a website]</div>
+          <div class="todo-note">remove the drawing and add a dashboard image here</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="83">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:23:15:45</span><span class="marker-num">#83</span></div>
+          <div class="todo-name">[what are my changes.]</div>
+          <div class="todo-note">remove the flickered moment of the background</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="84">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:23:22:26</span><span class="marker-num">#84</span></div>
+          <div class="todo-name">[NA10 is very critical for]</div>
+          <div class="todo-note">n8n error on the subtitle</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="red" data-id="85">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:24:23:57</span><span class="marker-num">#85</span></div>
+          <div class="todo-name">[till next time love bye]</div>
+          <div class="todo-note">remove this expression</div>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       YELLOW — Add / Enhance
+  ════════════════════════════════════════════════════════════════ -->
+  <section class="sec-yellow" id="sec-yellow">
+    <h2>🟡 Add / Enhance <span class="section-count">35 items</span></h2>
+    <ul class="todo-list">
+
+      <li class="todo-item" data-color="yellow" data-id="y2">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:00:19:56</span><span class="marker-num">#2</span></div>
+          <div class="todo-name">[Last week I made a decision.]</div>
+          <div class="todo-note">add "no code, no tech, no money" → dopamine detox and move to ikigai / other</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y3">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:00:48:53</span><span class="marker-num">#3</span></div>
+          <div class="todo-name">[to survive this billion dollar war.]</div>
+          <div class="todo-note">the glass and the barrier for her to come in — Marianna needs free and working</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y4">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:01:21:39</span><span class="marker-num">#4</span></div>
+          <div class="todo-name">[The scene, the statue hall, the screen]</div>
+          <div class="todo-note">the frozen statues</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y7">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:02:28:20</span><span class="marker-num">#7</span></div>
+          <div class="todo-name">[The scene, the clone lab, the screen]</div>
+          <div class="todo-note">add mention — "let's start getting hands dirty!"</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y8">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:02:47:49</span><span class="marker-num">#8</span></div>
+          <div class="todo-name">Marker 18</div>
+          <div class="todo-note">delivery pilot way → video → assessment → checklist → learn stages → visual add</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y9">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:03:18:17</span><span class="marker-num">#9</span></div>
+          <div class="todo-name">[This is the way to go for the starters.]</div>
+          <div class="todo-note">show the GitHub page as transition — no tech background</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y10">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:03:26:44</span><span class="marker-num">#10</span></div>
+          <div class="todo-name">[be able to do your job.]</div>
+          <div class="todo-note">show Copilot in action as footage</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y11">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:03:35:29</span><span class="marker-num">#11</span></div>
+          <div class="todo-name">[cursor AI makes more sense.]</div>
+          <div class="todo-note">mention the more you learn you can invest or use company resources</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y13">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:03:41:45</span><span class="marker-num">#13</span></div>
+          <div class="todo-name">[swap between each other.]</div>
+          <div class="todo-note">mention this depends on the timeline where you are — change with AI → now at Kilocode → before I was with Gemini</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y15">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:04:16:16</span><span class="marker-num">#15</span></div>
+          <div class="todo-name">[to operate it on your local and how to]</div>
+          <div class="todo-note">add skills gaps and mention they jump from their status quo by cloning and implementing</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y16">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:04:21:04</span><span class="marker-num">#16</span></div>
+          <div class="todo-name">[environment then it is time for]</div>
+          <div class="todo-note">show the visual: move from POC → lab → CV → enterprise pilot</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y19">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:04:50:34</span><span class="marker-num">#19</span></div>
+          <div class="todo-name">[so we can see all of]</div>
+          <div class="todo-note">add the system to show the website visuals</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y20">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:05:27:04</span><span class="marker-num">#20</span></div>
+          <div class="todo-name">[minutes or you can get your own]</div>
+          <div class="todo-note">show the index pages and the GitHub pages — this is the self-learning part</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y22">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:06:10:36</span><span class="marker-num">#22</span></div>
+          <div class="todo-name">[to be able to turn only one]</div>
+          <div class="todo-note">mention the best way to learn it is to use it naturally and not come up with artificial use cases</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y25">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:06:58:34</span><span class="marker-num">#25</span></div>
+          <div class="todo-name">Yellow Marker</div>
+          <div class="todo-note">logic and clone it — use the template → make it yours and fix your issue</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y26">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:07:22:27</span><span class="marker-num">#26</span></div>
+          <div class="todo-name">[different skills, coding, reasoning,]</div>
+          <div class="todo-note">serenity prayer is the key — we won't be able to do everything even with AI; knowing what we can and can't do is the key</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y29">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:08:33:09</span><span class="marker-num">#29</span></div>
+          <div class="todo-name">[We are in an ever]</div>
+          <div class="todo-note">mention the importance of AI and hands-on — there is a gap humans need to fill; machine learning: we need to teach the robots</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y30">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:08:42:02</span><span class="marker-num">#30</span></div>
+          <div class="todo-name">[smartest operators in the room.]</div>
+          <div class="todo-note">(review clip)</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y37">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:10:15:41</span><span class="marker-num">#37</span></div>
+          <div class="todo-name">[this by a Chrome extension.]</div>
+          <div class="todo-note">show the Chrome extension</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y41">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:11:50:08</span><span class="marker-num">#41</span></div>
+          <div class="todo-name">[use their mobile app as well.]</div>
+          <div class="todo-note">add footage for the mobile as well</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y42">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:11:52:51</span><span class="marker-num">#42</span></div>
+          <div class="todo-name">[A visual, a kitchen table flowing with]</div>
+          <div class="todo-note">add a banner and add the hobby angle — AI not professional but as a hobby it is great</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y44">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:12:22:06</span><span class="marker-num">#44</span></div>
+          <div class="todo-name">[build it using cloud, using]</div>
+          <div class="todo-note">add digital gatekeeper in here</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y49">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:12:53:32</span><span class="marker-num">#49</span></div>
+          <div class="todo-name">[This is your key moment.]</div>
+          <div class="todo-note">add the animation where people are learning — not just with AI but holding the hammer and delivering; they are worth carrying the hammer by being brave and self-learning</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y51">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:13:07:14</span><span class="marker-num">#51</span></div>
+          <div class="todo-name">[capture, the github and the tool there.]</div>
+          <div class="todo-note">add symbols for the prerequisites — what is needed to deliver</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y54">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:13:31:25</span><span class="marker-num">#54</span></div>
+          <div class="todo-name">[solution for myself.]</div>
+          <div class="todo-note">add the bespoke solution — what it is: a custom solution; in the past expensive to write, now much cheaper with the rise of AI</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y55">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:13:57:26</span><span class="marker-num">#55</span></div>
+          <div class="todo-name">[This is working behind my own system in]</div>
+          <div class="todo-note">integration slide to the devices in the flat</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y56">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:14:06:25</span><span class="marker-num">#56</span></div>
+          <div class="todo-name">[this in a different way.]</div>
+          <div class="todo-note">show what a router is → people have it at home and every router is not the same in terms of functionality → we would have different robots coming in</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y61">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:15:00:52</span><span class="marker-num">#61</span></div>
+          <div class="todo-name">[where she has got issues turning on and]</div>
+          <div class="todo-note">add the converge/diverge and simplify the problems with the solutions — every night it turns off, she can only turn it back on</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y64">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:16:04:59</span><span class="marker-num">#64</span></div>
+          <div class="todo-name">[able to see all my executions and when]</div>
+          <div class="todo-note">add a slide mentioning how does this evolve</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y70">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:16:44:00</span><span class="marker-num">#70</span></div>
+          <div class="todo-name">[make this work easier for myself.]</div>
+          <div class="todo-note">iterative process is the key — nobody knows where the AI goes; we are all learning</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y71">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:17:01:53</span><span class="marker-num">#71</span></div>
+          <div class="todo-name">[off a specific device.]</div>
+          <div class="todo-note">mention new features coming — kids grow up, wife uses it better; time moves on</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y75">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:17:47:54</span><span class="marker-num">#75</span></div>
+          <div class="todo-name">[Find the things that is your own]</div>
+          <div class="todo-note">slide: my use case and your use case is different — use mine to move on to yours as a template; best learning comes from your own hands-on that is meaningful</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y76">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:18:00:54</span><span class="marker-num">#76</span></div>
+          <div class="todo-name">[for yourself, for your family.]</div>
+          <div class="todo-note">start with free — Flickr and big</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y77">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:18:05:47</span><span class="marker-num">#77</span></div>
+          <div class="todo-name">[GitHub toolbox for modern developers.]</div>
+          <div class="todo-note">with AI everyone is a developer — banner: "everyone can build apps"</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="yellow" data-id="y78">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:19:24:10</span><span class="marker-num">#78</span></div>
+          <div class="todo-name">[the continuous integration]</div>
+          <div class="todo-note">show always-green trunk — keep the code safe → sanity level</div>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       BLUE — Background / Code
+  ════════════════════════════════════════════════════════════════ -->
+  <section class="sec-blue" id="sec-blue">
+    <h2>🔵 Background / Code <span class="section-count">3 items</span></h2>
+    <ul class="todo-list">
+
+      <li class="todo-item" data-color="blue" data-id="b31">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:08:53:15</span><span class="marker-num">#31</span></div>
+          <div class="todo-name">[The scene, the kitchen table, the screen]</div>
+          <div class="todo-note">background fix</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="blue" data-id="b67">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:16:15:19</span><span class="marker-num">#67</span></div>
+          <div class="todo-name">[I have updated the code base]</div>
+          <div class="todo-note">delete the drawing tool</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="blue" data-id="b35">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:09:12:44</span><span class="marker-num">#35</span></div>
+          <div class="todo-name">[for you while we are learning.]</div>
+          <div class="todo-note">(review clip)</div>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       CYAN — Transition
+  ════════════════════════════════════════════════════════════════ -->
+  <section class="sec-cyan" id="sec-cyan">
+    <h2>🩵 Transition / Reveal <span class="section-count">2 items</span></h2>
+    <ul class="todo-list">
+
+      <li class="todo-item" data-color="cyan" data-id="c36">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:09:22:55</span><span class="marker-num">#36</span></div>
+          <div class="todo-name">[the first because]</div>
+          <div class="todo-note">move the internal curtain — do not reveal all at once</div>
+        </div>
+      </li>
+
+      <li class="todo-item" data-color="cyan" data-id="c38">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:10:29:31</span><span class="marker-num">#38</span></div>
+          <div class="todo-name">[you want to use it for]</div>
+          <div class="todo-note">mention not every coder would spend money on Claude</div>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       GREEN — Content
+  ════════════════════════════════════════════════════════════════ -->
+  <section class="sec-green" id="sec-green">
+    <h2>🟢 Content <span class="section-count">1 item</span></h2>
+    <ul class="todo-list">
+
+      <li class="todo-item" data-color="green" data-id="g14">
+        <input type="checkbox" />
+        <div class="todo-body">
+          <div class="todo-meta"><span class="tc-badge">01:03:56:23</span><span class="marker-num">#14</span></div>
+          <div class="todo-name">[yourself you are going to]</div>
+          <div class="todo-note">mentor gets cloned — that is the key; people watch and learn</div>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <p>Post-Production TODO · <a href="../../index.html">← Back to project</a> · <a href="https://github.com/rifaterdemsahin/lua">GitHub</a></p>
+</footer>
+
+<script>
+  var STORAGE_KEY = 'postprod-todo-feb2-20260222';
+  var TOTAL = 85;
+
+  /* ── Restore saved state ── */
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+    catch(e) { return {}; }
+  }
+
+  function saveState(state) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+  }
+
+  /* ── Progress ── */
+  function updateProgress() {
+    var done = document.querySelectorAll('.todo-item input[type="checkbox"]:checked').length;
+    var pct  = Math.round(done / TOTAL * 100);
+    document.getElementById('progress-text').textContent = done + ' / ' + TOTAL + ' done (' + pct + '%)';
+    document.getElementById('progress-bar').style.width  = pct + '%';
+  }
+
+  /* ── Init checkboxes ── */
+  var state = loadState();
+  document.querySelectorAll('.todo-item').forEach(function(item) {
+    var id  = item.getAttribute('data-id');
+    var cb  = item.querySelector('input[type="checkbox"]');
+    if (state[id]) { cb.checked = true; item.classList.add('done'); }
+
+    cb.addEventListener('change', function() {
+      if (cb.checked) {
+        item.classList.add('done');
+        state[id] = true;
+      } else {
+        item.classList.remove('done');
+        delete state[id];
+      }
+      saveState(state);
+      updateProgress();
+      applyHideDone();
+    });
+  });
+
+  updateProgress();
+
+  /* ── Filter by color ── */
+  var activeFilter = 'all';
+  document.querySelectorAll('.filter-btn[data-filter]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      activeFilter = btn.getAttribute('data-filter');
+      document.querySelectorAll('.filter-btn[data-filter]').forEach(function(b) {
+        b.classList.toggle('inactive', b !== btn);
+      });
+      applyFilter();
+    });
+  });
+
+  function applyFilter() {
+    document.querySelectorAll('.todo-item').forEach(function(item) {
+      var color = item.getAttribute('data-color');
+      var match = (activeFilter === 'all' || color === activeFilter);
+      item.classList.toggle('filtered', !match);
+    });
+    /* Hide empty sections */
+    ['red','yellow','blue','cyan','green'].forEach(function(c) {
+      var sec = document.getElementById('sec-' + c);
+      if (!sec) return;
+      var visible = sec.querySelectorAll('.todo-item:not(.filtered)').length > 0;
+      sec.classList.toggle('filtered', !visible);
+    });
+  }
+
+  /* ── Hide done toggle ── */
+  var hideDone = false;
+  document.getElementById('toggle-done').addEventListener('click', function() {
+    hideDone = !hideDone;
+    this.textContent = hideDone ? 'Show done' : 'Hide done';
+    applyHideDone();
+  });
+
+  function applyHideDone() {
+    document.querySelectorAll('.todo-item').forEach(function(item) {
+      if (hideDone && item.classList.contains('done')) {
+        item.style.display = 'none';
+      } else {
+        item.style.display = '';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
