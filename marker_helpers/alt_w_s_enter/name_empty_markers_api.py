@@ -1,12 +1,20 @@
 #!/usr/bin/env python
 """
 Name all unnamed markers from subtitle text at their position.
-Finds every marker with an empty name and fills it with the subtitle text.
+Finds every marker with an empty name or a default name (e.g. "Marker 42")
+and fills it with the subtitle text.
+
+WHY: When you trim clips, markers stay at their timeline position but subtitles
+move with the clip. Having subtitle text in the marker name makes it easy to
+identify and reposition markers after trimming — they're locked to the script
+(subtitle), not to the timeline.
+
 Uses DaVinci Resolve's external scripting API — no menu navigation needed.
 """
 
 import sys
 import os
+import re
 
 # Ensure the Resolve scripting module is discoverable
 modules_path = os.path.join(
@@ -75,6 +83,19 @@ print(f"Found {len(markers)} marker(s)")
 # Sort frame IDs ascending (process in timeline order)
 frames = sorted(markers.keys())
 
+# Pattern to match Resolve's default marker names like "Marker 1", "Marker 42", etc.
+DEFAULT_MARKER_NAME = re.compile(r"^Marker\s+\d+$", re.IGNORECASE)
+
+
+def is_unnamed(name):
+    """Check if a marker name is empty or a default auto-generated name."""
+    if not name or not name.strip():
+        return True
+    # Resolve auto-names markers as "Marker 1", "Marker 2", etc.
+    if DEFAULT_MARKER_NAME.match(name.strip()):
+        return True
+    return False
+
 
 def get_subtitle_at(abs_frame):
     """Find subtitle text at a given absolute frame position."""
@@ -97,8 +118,8 @@ for frame_id in frames:
     m = markers[frame_id]
     name = m.get("name", "")
 
-    # Skip markers that already have a name
-    if name.strip():
+    # Skip markers that already have a meaningful name (not empty, not "Marker N")
+    if not is_unnamed(name):
         skipped += 1
         continue
 
