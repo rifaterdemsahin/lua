@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lua DaVinci Resolve Automation</title>
+  <!-- Prism.js CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+      padding: 2rem 1rem;
+      text-align: center;
+      border-bottom: 2px solid #e94560;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      color: #e94560;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      color: #a8b2d8;
+      font-size: 1rem;
+    }
+
+    nav {
+      background: #16213e;
+      padding: 0.75rem 1rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      border-bottom: 1px solid #0f3460;
+    }
+
+    nav a {
+      color: #a8b2d8;
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+
+    nav a:hover { background: #0f3460; color: #e94560; }
+
+    main {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    section h2 {
+      font-size: 1.5rem;
+      color: #e94560;
+      border-left: 4px solid #e94560;
+      padding-left: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    section h3 {
+      font-size: 1.1rem;
+      color: #ccd6f6;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    section p, section ul, section ol {
+      color: #a8b2d8;
+      margin-bottom: 0.75rem;
+    }
+
+    section ul, section ol {
+      padding-left: 1.5rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #0f3460;
+      color: #e94560;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      margin-right: 0.4rem;
+      vertical-align: middle;
+    }
+
+    /* Code block wrapper */
+    .code-block {
+      position: relative;
+      margin: 1rem 0;
+    }
+
+    .code-block pre {
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.85rem;
+      padding-top: 2.5rem !important; /* space for copy button */
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: #e94560;
+      color: #fff;
+      border: none;
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s, transform 0.1s;
+      z-index: 10;
+    }
+
+    .copy-btn:hover { background: #c73652; }
+    .copy-btn:active { transform: scale(0.95); }
+    .copy-btn.copied { background: #27ae60; }
+
+    .install-note {
+      background: #16213e;
+      border: 1px solid #0f3460;
+      border-left: 3px solid #e94560;
+      border-radius: 4px;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      color: #a8b2d8;
+      margin: 0.75rem 0;
+    }
+
+    .install-note strong { color: #ccd6f6; }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #4a5568;
+      font-size: 0.85rem;
+      border-top: 1px solid #16213e;
+    }
+
+    footer a { color: #e94560; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🎬 Lua DaVinci Resolve Automation</h1>
+  <p>Practical Lua scripts for automating DaVinci Resolve video production pipelines</p>
+</header>
+
+<nav>
+  <a href="#objectives">1 · Objectives</a>
+  <a href="#environment">2 · Environment</a>
+  <a href="#examples">3 · Examples</a>
+  <a href="#guide">4 · Guide</a>
+  <a href="#scripts">5 · Scripts</a>
+  <a href="#errors">6 · Errors</a>
+  <a href="#testing">7 · Testing</a>
+</nav>
+
+<main>
+
+  <!-- 1. Objectives -->
+  <section id="objectives">
+    <h2><span class="badge">1</span> Objectives (OKRs)</h2>
+    <p>Automate repetitive DaVinci Resolve edit-page tasks using Lua scripts so that editors spend less time on manual work and more time on creative decisions.</p>
+    <h3>Key Results</h3>
+    <ul>
+      <li>Chapter title cards created in &lt; 30 seconds per project</li>
+      <li>Subtitle-to-marker mapping completed with a single script run</li>
+      <li>All scripts runnable from <em>Workspace → Scripts</em> without any external dependencies</li>
+    </ul>
+  </section>
+
+  <!-- 2. Environment -->
+  <section id="environment">
+    <h2><span class="badge">2</span> Environment – Setup &amp; Use Cases</h2>
+    <h3>Requirements</h3>
+    <ul>
+      <li>DaVinci Resolve 18+ (free or Studio)</li>
+      <li>Fusion scripting enabled in Preferences → System → General</li>
+    </ul>
+    <h3>Install Paths</h3>
+    <div class="install-note">
+      <strong>Windows:</strong> <code>%APPDATA%\Blackmagic Design\DaVinci Resolve\Fusion\Scripts\Edit\</code>
+    </div>
+    <div class="install-note">
+      <strong>macOS:</strong> <code>~/Library/Application Support/Blackmagic Design/DaVinci Resolve/Fusion/Scripts/Edit/</code>
+    </div>
+    <h3>Use Cases</h3>
+    <ul>
+      <li>YouTube long-form videos needing chapter cards at each section</li>
+      <li>Podcast/interview edits requiring auto-labelled timeline markers</li>
+      <li>Batch automation of repetitive Fusion composition tasks</li>
+    </ul>
+  </section>
+
+  <!-- 3. Examples / Simulation -->
+  <section id="examples">
+    <h2><span class="badge">3</span> Examples</h2>
+
+    <h3>Example 1 · Minimal Chapter Titles (3 chapters)</h3>
+    <p>A stripped-down version to understand the core pattern before running the full script.</p>
+    <div class="code-block">
+      <button class="copy-btn" data-target="ex1">Copy</button>
+      <pre id="ex1"><code class="language-lua">-- Minimal chapter title example (3 chapters)
+local chapter_titles = { "Intro", "Main Content", "Outro" }
+
+local resolve = Resolve()
+local project  = resolve:GetProjectManager():GetCurrentProject()
+local timeline = project:GetCurrentTimeline()
+
+for i, title in ipairs(chapter_titles) do
+    print("Inserting chapter: " .. title)
+    timeline:InsertFusionTitleIntoTimeline("Text+")
+end</code></pre>
+    </div>
+
+    <h3>Example 2 · Read the Last Marker</h3>
+    <p>Quickly inspect what the last marker on the timeline contains.</p>
+    <div class="code-block">
+      <button class="copy-btn" data-target="ex2">Copy</button>
+      <pre id="ex2"><code class="language-lua">-- Print the last marker's details
+local resolve  = Resolve()
+local timeline = resolve:GetProjectManager():GetCurrentProject():GetCurrentTimeline()
+
+local markers = timeline:GetMarkers()
+local frames  = {}
+for f in pairs(markers) do table.insert(frames, f) end
+table.sort(frames)
+
+local last = frames[#frames]
+if last then
+    local m = markers[last]
+    print("Last marker at frame " .. last)
+    print("  Name:  " .. (m.name  or "(none)"))
+    print("  Color: " .. (m.color or "(none)"))
+    print("  Note:  " .. (m.note  or "(none)"))
+end</code></pre>
+    </div>
+
+    <h3>Example 3 · Auto-fill Marker from Nearest Subtitle</h3>
+    <p>Demonstrates the core logic of <code>fill_last_marker.lua</code> – find the subtitle at a marker's frame and write it into the marker name.</p>
+    <div class="code-block">
+      <button class="copy-btn" data-target="ex3">Copy</button>
+      <pre id="ex3"><code class="language-lua">-- Simplified subtitle-to-marker fill
+local resolve  = Resolve()
+local project  = resolve:GetProjectManager():GetCurrentProject()
+local timeline = project:GetCurrentTimeline()
+local tl_start = timeline:GetStartFrame()
+
+-- Collect subtitle items from first subtitle track
+local subs = timeline:GetItemListInTrack("subtitle", 1) or {}
+
+local function subtitle_at(abs_frame)
+    for _, sub in ipairs(subs) do
+        if abs_frame >= sub:GetStart() and abs_frame < sub:GetEnd() then
+            return sub:GetName()
+        end
+    end
+end
+
+-- Get and sort markers (newest first)
+local markers = timeline:GetMarkers()
+local frames  = {}
+for f in pairs(markers) do table.insert(frames, f) end
+table.sort(frames, function(a, b) return a > b end)
+
+for _, f in ipairs(frames) do
+    local m    = markers[f]
+    local text = subtitle_at(tl_start + f)
+    if text then
+        print("Marker " .. f .. " -> " .. text)
+        break   -- process one at a time
+    end
+end</code></pre>
+    </div>
+  </section>
+
+  <!-- 4. Guide / Formula -->
+  <section id="guide">
+    <h2><span class="badge">4</span> Guide – Steps &amp; Best Practices</h2>
+    <ol>
+      <li><strong>Place your playhead</strong> at the start of the timeline before running any title-insertion script.</li>
+      <li><strong>Name chapter markers</strong> with the prefix <code>[chapter]</code> (e.g. <code>[chapter] Introduction</code>) so scripts can filter them.</li>
+      <li><strong>One subtitle track</strong> is assumed at index 1 for the fill-marker script; adjust the track index in the code if needed.</li>
+      <li><strong>Test on a copy</strong> of your timeline first – scripts that delete and recreate markers cannot be undone with Ctrl+Z.</li>
+      <li><strong>Adjust fade frames</strong> (<code>fade_in_frames</code> / <code>fade_out_frames</code>) to match your project's frame rate.</li>
+    </ol>
+  </section>
+
+  <!-- 5. Scripts / Symbols -->
+  <section id="scripts">
+    <h2><span class="badge">5</span> Scripts – Full Source Code</h2>
+
+    <h3>chaptermarkers.lua</h3>
+    <p>Creates animated Fusion <code>Text+</code> title cards for each chapter, with fade-in and fade-out, over a black background.</p>
+    <div class="code-block">
+      <button class="copy-btn" data-target="chaptermarkers">Copy</button>
+      <pre id="chaptermarkers"><code class="language-lua">-- [[
+-- Chapter Title Cards from Markers
+--
+-- For each marker with a name starting with [chapter],
+-- creates a 3-second black solid with big white text
+-- showing the marker name as a chapter title.
+-- ]]
+
+-- ============================================
+-- EDIT YOUR CHAPTER TITLES HERE
+-- ============================================
+local chapter_titles = {
+    "Chapter 1",
+    "Chapter 2",
+    "Chapter 3",
+    "Chapter 4",
+    "Chapter 5",
+}
+-- ============================================
+
+local resolve  = Resolve()
+local project  = resolve:GetProjectManager():GetCurrentProject()
+local timeline = project:GetCurrentTimeline()
+
+if not timeline then
+    print("ERROR: No timeline open.")
+    return
+end
+
+-- ============================================
+-- FADE SETTINGS (in frames)
+-- ============================================
+local fade_in_frames  = 15  -- fade in duration
+local fade_out_frames = 15  -- fade out duration
+-- ============================================
+
+local fps              = tonumber(timeline:GetSetting("timelineFrameRate")) or 24
+local duration_frames  = math.floor(3 * fps)
+
+local chapters = {}
+for _, title in ipairs(chapter_titles) do
+    table.insert(chapters, { text = title })
+end
+
+print("Creating " .. #chapters .. " chapter title cards at " .. fps .. " fps")
+
+for i, ch in ipairs(chapters) do
+    print(i .. "/" .. #chapters .. ": " .. ch.text)
+
+    if timeline:InsertFusionTitleIntoTimeline("Text+") then
+        resolve:OpenPage("fusion")
+        local comp = resolve:Fusion():GetCurrentComp()
+
+        if comp then
+            -- Find the Text+ template tool
+            for _, tool in pairs(comp:GetToolList()) do
+                if tool:GetAttrs().TOOLS_Name == "Template" then
+                    tool:SetInput("StyledText", ch.text)
+                    tool:SetInput("Size",   0.08)
+                    tool:SetInput("Center", { 0.5, 0.5 })
+                    tool:SetInput("Red1",   1.0)
+                    tool:SetInput("Green1", 1.0)
+                    tool:SetInput("Blue1",  1.0)
+                    break
+                end
+            end
+
+            -- Add black background + merge with fade
+            local bg    = comp:AddTool("Background")
+            local merge = comp:AddTool("Merge")
+            local mout  = comp:FindToolByID("MediaOut")
+
+            bg:SetInput("TopLeftRed",   0)
+            bg:SetInput("TopLeftGreen", 0)
+            bg:SetInput("TopLeftBlue",  0)
+            bg:SetInput("TopLeftAlpha", 1)
+
+            if merge and mout then
+                local cs = comp:GetAttrs().COMPN_RenderStart
+                local ce = comp:GetAttrs().COMPN_RenderEnd
+                merge:SetInput("Blend", 0.0, cs)
+                merge:SetInput("Blend", 1.0, cs + fade_in_frames)
+                merge:SetInput("Blend", 1.0, ce - fade_out_frames)
+                merge:SetInput("Blend", 0.0, ce)
+            end
+        end
+
+        resolve:OpenPage("edit")
+    end
+end
+
+print("Done! " .. #chapters .. " title cards created.")</code></pre>
+    </div>
+
+    <h3>fill_last_marker.lua</h3>
+    <p>Finds the last timeline marker without subtitle text in its note and auto-fills it from the nearest subtitle clip.</p>
+    <div class="code-block">
+      <button class="copy-btn" data-target="filllastmarker">Copy</button>
+      <pre id="filllastmarker"><code class="language-lua">--[[
+Auto-Fill Last Marker with Subtitle Text
+=========================================
+Finds the LAST timeline marker that doesn't have subtitle text
+in its note yet, and fills it in.
+
+Run this every time you drop a new marker.
+
+Install (Windows): %APPDATA%\Blackmagic Design\DaVinci Resolve\Fusion\Scripts\Edit\
+Run:               Workspace > Scripts > Fill Last Marker Subtitle
+--]]
+
+local resolve  = Resolve()
+local project  = resolve:GetProjectManager():GetCurrentProject()
+local timeline = project:GetCurrentTimeline()
+
+if not timeline then
+    print("ERROR: No timeline open.")
+    return
+end
+
+local tl_start = timeline:GetStartFrame()
+
+-- Collect subtitles from the first subtitle track
+local sub_count = timeline:GetTrackCount("subtitle")
+if sub_count == 0 then
+    print("ERROR: No subtitle track found.")
+    return
+end
+
+local subs = {}
+for i = 1, sub_count do
+    local items = timeline:GetItemListInTrack("subtitle", i)
+    if items then
+        for _, item in ipairs(items) do
+            table.insert(subs, item)
+        end
+    end
+end
+
+if #subs == 0 then
+    print("ERROR: No subtitles found.")
+    return
+end
+
+local markers = timeline:GetMarkers()
+if not markers then
+    print("ERROR: No markers found.")
+    return
+end
+
+local frames = {}
+for f in pairs(markers) do table.insert(frames, f) end
+table.sort(frames, function(a, b) return a > b end)
+
+local function get_subtitle_at(abs_frame)
+    for _, sub in ipairs(subs) do
+        local s = sub:GetStart()
+        local e = sub:GetEnd()
+        if abs_frame >= s and abs_frame < e then
+            local text = sub:GetName()
+            if text and text ~= "" then return text end
+        end
+    end
+end
+
+for _, frame_id in ipairs(frames) do
+    local m    = markers[frame_id]
+    local name = m["name"] or ""
+
+    if not name:match("^%[") then
+        local sub_text = get_subtitle_at(tl_start + frame_id)
+        if not sub_text then
+            print("Frame " .. frame_id .. ": no subtitle at this position.")
+            return
+        end
+
+        sub_text = sub_text:gsub("%s+", " "):match("^%s*(.-)%s*$")
+        if #sub_text > 80 then sub_text = sub_text:sub(1, 80) .. "..." end
+
+        local new_name = name ~= "" and ("[" .. sub_text .. "] " .. name)
+                                     or  ("[" .. sub_text .. "]")
+
+        local color  = m["color"]
+        local note   = m["note"]     or ""
+        local dur    = m["duration"]
+        local custom = m["customData"] or ""
+
+        timeline:DeleteMarkerAtFrame(frame_id)
+        local ok = timeline:AddMarker(frame_id, color, new_name, note, dur, custom)
+
+        if ok then
+            print("DONE: frame " .. frame_id .. " <- \"" .. sub_text .. "\"")
+        else
+            timeline:AddMarker(frame_id, color, name, note, dur, custom)
+            print("FAILED: could not update marker at frame " .. frame_id)
+        end
+        return
+    end
+end
+
+print("All markers already have subtitle text.")</code></pre>
+    </div>
+  </section>
+
+  <!-- 6. Errors / Semblance -->
+  <section id="errors">
+    <h2><span class="badge">6</span> Error Logs &amp; Solutions</h2>
+
+    <h3><code>ERROR: No timeline open.</code></h3>
+    <p><strong>Cause:</strong> No project or timeline is active when the script runs.<br />
+       <strong>Fix:</strong> Open DaVinci Resolve, load your project, and make sure a timeline is open in the Edit page.</p>
+
+    <h3><code>ERROR: No subtitle track found.</code></h3>
+    <p><strong>Cause:</strong> The timeline has no subtitle track.<br />
+       <strong>Fix:</strong> Add a subtitle track via <em>Timeline → Add Track → Subtitle</em> and populate it before running the script.</p>
+
+    <h3><code>FAILED to insert title. Skipping.</code></h3>
+    <p><strong>Cause:</strong> <code>InsertFusionTitleIntoTimeline("Text+")</code> returned <code>false</code>, usually because the playhead is outside the timeline range or Fusion scripting is disabled.<br />
+       <strong>Fix:</strong> Place the playhead at the start of the timeline; enable Fusion scripting in <em>Preferences → System → General</em>.</p>
+
+    <h3><code>WARNING: Could not find Template tool.</code></h3>
+    <p><strong>Cause:</strong> The inserted Fusion composition does not contain a tool named <em>Template</em>.<br />
+       <strong>Fix:</strong> Verify that <code>Text+</code> is installed in your Fusion templates folder.</p>
+  </section>
+
+  <!-- 7. Testing -->
+  <section id="testing">
+    <h2><span class="badge">7</span> Testing – Validation &amp; Acceptance</h2>
+    <h3>Acceptance Criteria</h3>
+    <ul>
+      <li>Running <code>chaptermarkers.lua</code> inserts exactly N title clips (one per entry in <code>chapter_titles</code>) on the Edit page.</li>
+      <li>Each title clip opens in Fusion with the correct chapter text, white font, and black background.</li>
+      <li>Running <code>fill_last_marker.lua</code> updates the last unfilled marker name with the subtitle text at that frame.</li>
+      <li>A second run of <code>fill_last_marker.lua</code> prints <em>"All markers already have subtitle text."</em> and does not modify any markers.</li>
+    </ul>
+    <h3>Manual Test Steps</h3>
+    <ol>
+      <li>Create a test project with a 30-second timeline.</li>
+      <li>Add 3 markers at frames 24, 48, 72 with no names.</li>
+      <li>Add a subtitle track with text at those frames.</li>
+      <li>Run <code>fill_last_marker.lua</code> three times and confirm each marker is updated in reverse order.</li>
+      <li>Edit <code>chapter_titles</code> to contain 3 entries; run <code>chaptermarkers.lua</code> and verify 3 title clips appear.</li>
+    </ol>
+  </section>
+
+</main>
+
+<footer>
+  <p>Lua DaVinci Resolve Automation · <a href="https://github.com/rifaterdemsahin/lua">GitHub</a></p>
+</footer>
+
+<!-- Prism.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script>
+  document.querySelectorAll('.copy-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var targetId = btn.getAttribute('data-target');
+      var codeEl   = document.querySelector('#' + targetId + ' code');
+      if (!codeEl) return;
+
+      navigator.clipboard.writeText(codeEl.innerText).then(function() {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      }).catch(function() {
+        // Fallback for browsers without clipboard API
+        var range = document.createRange();
+        range.selectNodeContents(codeEl);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand('copy');
+        window.getSelection().removeAllRanges();
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
