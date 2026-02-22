@@ -1,52 +1,60 @@
-# alt_w_s_enter
+# fill_last_marker — Stream Deck Trigger
 
-Sends the key sequence **Alt → W → S → Enter** to trigger **Workspace > Scripts** in DaVinci Resolve.
+Runs the **fill_last_marker** script in DaVinci Resolve via the **Python scripting API** — no menu navigation or keyboard shortcuts needed.
+
+## Why not use menu keystrokes?
+
+The original approach used `Alt+W` → `S` → `Enter` to navigate **Workspace > Scripts**. This failed because:
+- `Alt+W` is mapped to **Reference Wipe Invert** in the SideshowFX keyboard layout
+- SendKeys loses focus when triggered from Stream Deck (CMD window steals it)
+
+The Python API approach talks directly to DaVinci Resolve's scripting engine — no window focus or shortcut conflicts.
 
 ## Files
 
 | File | Purpose |
 |------|---------|
-| `alt_w_s_enter.ps1` | PowerShell script that sends the keystrokes via `SendKeys` |
+| `fill_last_marker_api.py` | Python script that runs fill_last_marker logic via Resolve API |
+| `alt_w_s_enter.ps1` | PowerShell wrapper — sets up environment and calls the Python script |
 | `alt_w_s_enter.bat` | Batch wrapper — run this from Stream Deck or Explorer |
+
+## Requirements
+
+- **Python 3.5+** installed and on PATH
+- **DaVinci Resolve** running with a project/timeline open
+- DaVinci Resolve scripting API (installed automatically with Resolve)
 
 ## Usage
 
 ### From Elgato Stream Deck
 
-#### Option 1: System → Open (simplest)
 1. Open the **Stream Deck** app
 2. Drag the **System → Open** action onto a button
-3. In the **App / File** field, click the `...` button and browse to:
+3. In the **App / File** field, browse to:
    ```
    c:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.bat
    ```
-4. Leave **Title** blank or set it to something like `Run Script`
-5. Press the button — DaVinci Resolve **must be the focused window** when you press it
+4. Press the button — DaVinci Resolve does **not** need to be the focused window
 
-#### Option 2: Using the Multi Action (recommended)
-This method brings DaVinci Resolve to the foreground first, then sends the keystrokes.
+> **Tip:** To hide the CMD window flash, use a VBS wrapper (see Troubleshooting).
 
-1. Drag a **Multi Action** onto a button
-2. Add **System → Open** as the first action:
-   - App / File: `C:\Windows\System32\cmd.exe`
-   - Leave it — this is just to ensure focus isn't stolen
-3. Replace that with a single **System → Open** pointing to the `.bat` file:
-   ```
-   c:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.bat
-   ```
-4. The initial `Start-Sleep` in the script gives DaVinci Resolve time to receive focus
+### From Explorer / Command Line
 
-#### Option 3: Using the Stream Deck "Open" plugin with `-WindowStyle Hidden`
-If the cmd window flashing is distracting, create a **VBS wrapper** (see Troubleshooting below).
+Double-click `alt_w_s_enter.bat` or run:
+```bat
+alt_w_s_enter.bat
+```
 
-#### Troubleshooting
+### Troubleshooting
 
 | Symptom | Fix |
 |---------|-----|
 | Nothing happens | Check `alt_w_s_enter.log` in the script folder for errors |
-| CMD window flashes but no keystrokes | DaVinci Resolve was not the focused window. Increase `Start-Sleep` at the top of the `.ps1` |
-| `Resolve process not found` in log | DaVinci Resolve is not running. Start it first |
-| Execution policy error in log | The bat already uses `-ExecutionPolicy Bypass`. If it still fails, run `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser` once in PowerShell |
+| `Cannot import DaVinciResolveScript` | Ensure DaVinci Resolve is installed. Check that `fusionscript.dll` exists at `C:\Program Files\Blackmagic Design\DaVinci Resolve\` |
+| `Could not connect to DaVinci Resolve` | DaVinci Resolve must be running. The API connects to the running instance |
+| `No timeline open` | Open a timeline in DaVinci Resolve before pressing the button |
+| `Resolve process not found` | DaVinci Resolve is not running. Start it first |
+| Execution policy error | The bat uses `-ExecutionPolicy Bypass`. If it still fails, run `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser` once |
 | CMD window is annoying | Create a VBS wrapper to hide it — see below |
 
 **VBS wrapper to hide the CMD window** — save as `alt_w_s_enter.vbs` next to the `.bat`:
@@ -67,21 +75,7 @@ Or from PowerShell:
 Get-Content "c:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.log" -Tail 20
 ```
 
-### From Explorer / Command Line
-Double-click `alt_w_s_enter.bat` or run:
-```bat
-alt_w_s_enter.bat
-```
-
-## Key Sequence
-
-| Step | Key | Action |
-|------|-----|--------|
-| 1 | `Alt` | Open menu bar |
-| 2 | `W` | Workspace menu |
-| 3 | `S` | Scripts submenu |
-| 4 | `Enter` | Execute first script |
-
 ## Notes
-- Focus must be on DaVinci Resolve before running the script.
-- Delays between keystrokes are tuned for typical system speed; adjust `Start-Sleep` values if needed.
+- DaVinci Resolve does **not** need to be the focused window — the API connects directly.
+- Python must be installed and accessible from PATH.
+- The script finds the last unfilled marker and fills it with the subtitle text at that position.

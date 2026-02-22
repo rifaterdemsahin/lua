@@ -73,3 +73,14 @@ Script path: C:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.ps1
 [2026-02-22 15:53:01] All keystrokes sent successfully - fill_last_marker should be triggered
 [22/02/2026 15:53:01.77] SUCCESS: PowerShell exited with code 0 
 ============================================== 
+============================================== 
+[22/02/2026 16:00:46.04] BAT started 
+Working directory: C:\projects\lua\marker_helpers\alt_w_s_enter\ 
+Script path: C:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.ps1 
+[2026-02-22 16:00:56] PS1 script started
+[2026-02-22 16:00:58] DaVinci Resolve is running (PID: 2832060)
+[2026-02-22 16:00:58] Running fill_last_marker via Resolve Python API...
+[2026-02-22 16:01:00] ERROR: Traceback (most recent call last):
+[2026-02-22 16:01:00] Stack trace: at <ScriptBlock>, C:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.ps1: line 39
+[22/02/2026 16:01:00.06] ERROR: PowerShell exited with code 1 
+============================================== 
