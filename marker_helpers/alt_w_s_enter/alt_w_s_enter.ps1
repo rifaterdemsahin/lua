@@ -36,7 +36,8 @@ try {
     $env:RESOLVE_SCRIPT_API = "$env:PROGRAMDATA\Blackmagic Design\DaVinci Resolve\Support\Developer\Scripting"
     $env:PYTHONPATH = "$env:PROGRAMDATA\Blackmagic Design\DaVinci Resolve\Support\Developer\Scripting\Modules"
 
-    $output = python $pythonScript 2>&1
+    # Use Python 3.13 via the py launcher — Resolve's fusionscript.dll is not compatible with 3.14+
+    $output = py -3.13 $pythonScript 2>&1
     $exitCode = $LASTEXITCODE
 
     foreach ($line in $output) {
