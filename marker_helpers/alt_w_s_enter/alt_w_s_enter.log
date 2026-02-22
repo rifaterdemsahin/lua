@@ -99,3 +99,168 @@ Script path: C:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.ps1
 [2026-02-22 16:04:45] fill_last_marker completed successfully
 [22/02/2026 16:04:45.92] SUCCESS: PowerShell exited with code 0 
 ============================================== 
+============================================== 
+[22/02/2026 16:06:57.15] BAT started 
+Working directory: C:\projects\lua\marker_helpers\alt_w_s_enter\ 
+Script path: C:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.ps1 
+[2026-02-22 16:07:07] PS1 script started
+[2026-02-22 16:07:11] DaVinci Resolve is running (PID: 2832060)
+[2026-02-22 16:07:11] Running fill_last_marker via Resolve Python API...
+[2026-02-22 16:07:13] PYTHON: Project: feb 2
+[2026-02-22 16:07:13] PYTHON: Timeline: main
+[2026-02-22 16:07:13] PYTHON: Found 941 subtitle(s)
+[2026-02-22 16:07:13] PYTHON: Found 70 marker(s)
+[2026-02-22 16:07:13] PYTHON: DONE: Frame 60240 [Yellow] <- "make this work easier for myself."
+[2026-02-22 16:07:13] fill_last_marker completed successfully
+[22/02/2026 16:07:13.23] SUCCESS: PowerShell exited with code 0 
+============================================== 
+============================================== 
+[22/02/2026 16:08:49.21] BAT started 
+Working directory: C:\projects\lua\marker_helpers\alt_w_s_enter\ 
+Script path: C:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.ps1 
+[2026-02-22 16:08:56] PS1 script started
+[2026-02-22 16:08:59] DaVinci Resolve is running (PID: 2832060)
+[2026-02-22 16:08:59] Running fill_last_marker via Resolve Python API...
+[2026-02-22 16:09:08] PYTHON: Project: feb 2
+[2026-02-22 16:09:08] PYTHON: Timeline: main
+[2026-02-22 16:09:08] PYTHON: Found 941 subtitle(s)
+[2026-02-22 16:09:08] PYTHON: Found 71 marker(s)
+[2026-02-22 16:09:08] PYTHON: DONE: Frame 61313 [Yellow] <- "off a specific device."
+[2026-02-22 16:09:08] fill_last_marker completed successfully
+[22/02/2026 16:09:08.75] SUCCESS: PowerShell exited with code 0 
+============================================== 
+============================================== 
+[22/02/2026 16:09:16.87] BAT started 
+Working directory: C:\projects\lua\marker_helpers\alt_w_s_enter\ 
+Script path: C:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.ps1 
+[2026-02-22 16:09:23] PS1 script started
+[2026-02-22 16:09:25] DaVinci Resolve is running (PID: 2832060)
+[2026-02-22 16:09:25] Running fill_last_marker via Resolve Python API...
+[2026-02-22 16:09:27] PYTHON: Project: feb 2
+[2026-02-22 16:09:27] PYTHON: Timeline: main
+[2026-02-22 16:09:27] PYTHON: Found 941 subtitle(s)
+[2026-02-22 16:09:27] PYTHON: Found 72 marker(s)
+[2026-02-22 16:09:27] PYTHON: DONE: Frame 62101 [Red] <- "shared this in other videos, you can"
+[2026-02-22 16:09:27] fill_last_marker completed successfully
+[22/02/2026 16:09:27.75] SUCCESS: PowerShell exited with code 0 
+============================================== 
+============================================== 
+[22/02/2026 16:09:55.57] BAT started 
+Working directory: C:\projects\lua\marker_helpers\alt_w_s_enter\ 
+Script path: C:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.ps1 
+[2026-02-22 16:10:01] PS1 script started
+[2026-02-22 16:10:04] DaVinci Resolve is running (PID: 2832060)
+[2026-02-22 16:10:04] Running fill_last_marker via Resolve Python API...
+[2026-02-22 16:10:06] PYTHON: Project: feb 2
+[2026-02-22 16:10:06] PYTHON: Timeline: main
+[2026-02-22 16:10:06] PYTHON: Found 941 subtitle(s)
+[2026-02-22 16:10:06] PYTHON: Found 74 marker(s)
+[2026-02-22 16:10:06] PYTHON: DONE: Frame 62914 [Red] <- "I'm using the memory palaces."
+[2026-02-22 16:10:06] fill_last_marker completed successfully
+[22/02/2026 16:10:06.46] SUCCESS: PowerShell exited with code 0 
+============================================== 
+============================================== 
+[22/02/2026 16:10:16.17] BAT started 
+Working directory: C:\projects\lua\marker_helpers\alt_w_s_enter\ 
+Script path: C:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.ps1 
+[2026-02-22 16:10:22] PS1 script started
+[2026-02-22 16:10:24] DaVinci Resolve is running (PID: 2832060)
+[2026-02-22 16:10:24] Running fill_last_marker via Resolve Python API...
+[2026-02-22 16:10:40] PYTHON: Project: feb 2
+[2026-02-22 16:10:40] PYTHON: Timeline: main
+[2026-02-22 16:10:40] PYTHON: Found 941 subtitle(s)
+[2026-02-22 16:10:40] PYTHON: Found 74 marker(s)
+[2026-02-22 16:10:40] PYTHON: DONE: Frame 62914 [Red] <- "I'm using the memory palaces."
+[2026-02-22 16:10:40] fill_last_marker completed successfully
+[22/02/2026 16:10:40.69] SUCCESS: PowerShell exited with code 0 
+============================================== 
+============================================== 
+[22/02/2026 16:11:21.75] BAT started 
+Working directory: C:\projects\lua\marker_helpers\alt_w_s_enter\ 
+Script path: C:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.ps1 
+[2026-02-22 16:11:27] PS1 script started
+[2026-02-22 16:11:29] DaVinci Resolve is running (PID: 2832060)
+[2026-02-22 16:11:29] Running fill_last_marker via Resolve Python API...
+[2026-02-22 16:11:31] PYTHON: Project: feb 2
+[2026-02-22 16:11:31] PYTHON: Timeline: main
+[2026-02-22 16:11:31] PYTHON: Found 941 subtitle(s)
+[2026-02-22 16:11:31] PYTHON: Found 75 marker(s)
+[2026-02-22 16:11:31] PYTHON: DONE: Frame 64074 [Yellow] <- "Find the things that is your own"
+[2026-02-22 16:11:31] fill_last_marker completed successfully
+[22/02/2026 16:11:31.96] SUCCESS: PowerShell exited with code 0 
+============================================== 
+============================================== 
+[22/02/2026 16:15:58.31] BAT started 
+Working directory: C:\projects\lua\marker_helpers\alt_w_s_enter\ 
+Script path: C:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.ps1 
+[2026-02-22 16:16:06] PS1 script started
+[2026-02-22 16:16:11] DaVinci Resolve is running (PID: 2832060)
+[2026-02-22 16:16:11] Running fill_last_marker via Resolve Python API...
+[2026-02-22 16:16:16] PYTHON: Project: feb 2
+[2026-02-22 16:16:16] PYTHON: Timeline: main
+[2026-02-22 16:16:16] PYTHON: Found 941 subtitle(s)
+[2026-02-22 16:16:16] PYTHON: Found 76 marker(s)
+[2026-02-22 16:16:16] PYTHON: DONE: Frame 64854 [Yellow] <- "for yourself, for your family."
+[2026-02-22 16:16:16] fill_last_marker completed successfully
+[22/02/2026 16:16:16.82] SUCCESS: PowerShell exited with code 0 
+============================================== 
+============================================== 
+[22/02/2026 16:17:48.83] BAT started 
+Working directory: C:\projects\lua\marker_helpers\alt_w_s_enter\ 
+Script path: C:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.ps1 
+[2026-02-22 16:17:56] PS1 script started
+[2026-02-22 16:17:59] DaVinci Resolve is running (PID: 2832060)
+[2026-02-22 16:17:59] Running fill_last_marker via Resolve Python API...
+[2026-02-22 16:19:47] PYTHON: Project: feb 2
+[2026-02-22 16:19:47] PYTHON: Timeline: main
+[2026-02-22 16:19:47] PYTHON: Found 941 subtitle(s)
+[2026-02-22 16:19:47] PYTHON: Found 78 marker(s)
+[2026-02-22 16:19:47] PYTHON: DONE: Frame 69850 [Yellow] <- "the continuous integration"
+[2026-02-22 16:19:47] fill_last_marker completed successfully
+[22/02/2026 16:19:47.45] SUCCESS: PowerShell exited with code 0 
+============================================== 
+============================================== 
+[22/02/2026 16:20:06.74] BAT started 
+Working directory: C:\projects\lua\marker_helpers\alt_w_s_enter\ 
+Script path: C:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.ps1 
+[2026-02-22 16:20:14] PS1 script started
+[2026-02-22 16:20:17] DaVinci Resolve is running (PID: 2832060)
+[2026-02-22 16:20:17] Running fill_last_marker via Resolve Python API...
+[2026-02-22 16:20:27] PYTHON: Project: feb 2
+[2026-02-22 16:20:27] PYTHON: Timeline: main
+[2026-02-22 16:20:27] PYTHON: Found 941 subtitle(s)
+[2026-02-22 16:20:27] PYTHON: Found 79 marker(s)
+[2026-02-22 16:20:27] PYTHON: DONE: Frame 76484 [Red] <- "and understanding what is happening in the background the scene, the balcony, th..."
+[2026-02-22 16:20:27] fill_last_marker completed successfully
+[22/02/2026 16:20:27.22] SUCCESS: PowerShell exited with code 0 
+============================================== 
+============================================== 
+[22/02/2026 16:22:58.14] BAT started 
+Working directory: C:\projects\lua\marker_helpers\alt_w_s_enter\ 
+Script path: C:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.ps1 
+[2026-02-22 16:23:07] PS1 script started
+[2026-02-22 16:23:10] DaVinci Resolve is running (PID: 2832060)
+[2026-02-22 16:23:10] Running fill_last_marker via Resolve Python API...
+[2026-02-22 16:23:44] PYTHON: Project: feb 2
+[2026-02-22 16:23:44] PYTHON: Timeline: main
+[2026-02-22 16:23:44] PYTHON: Found 941 subtitle(s)
+[2026-02-22 16:23:44] PYTHON: Found 82 marker(s)
+[2026-02-22 16:23:44] PYTHON: DONE: Frame 81552 [Red] <- "able to deploy a website"
+[2026-02-22 16:23:44] fill_last_marker completed successfully
+[22/02/2026 16:23:44.90] SUCCESS: PowerShell exited with code 0 
+============================================== 
+============================================== 
+[22/02/2026 16:27:36.67] BAT started 
+Working directory: C:\projects\lua\marker_helpers\alt_w_s_enter\ 
+Script path: C:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.ps1 
+[2026-02-22 16:27:47] PS1 script started
+[2026-02-22 16:27:50] DaVinci Resolve is running (PID: 2832060)
+[2026-02-22 16:27:50] Running fill_last_marker via Resolve Python API...
+[2026-02-22 16:27:52] PYTHON: Project: feb 2
+[2026-02-22 16:27:52] PYTHON: Timeline: main
+[2026-02-22 16:27:52] PYTHON: Found 941 subtitle(s)
+[2026-02-22 16:27:52] PYTHON: Found 85 marker(s)
+[2026-02-22 16:27:52] PYTHON: DONE: Frame 87837 [Red] <- "till next time love bye"
+[2026-02-22 16:27:52] fill_last_marker completed successfully
+[22/02/2026 16:27:52.57] SUCCESS: PowerShell exited with code 0 
+============================================== 
