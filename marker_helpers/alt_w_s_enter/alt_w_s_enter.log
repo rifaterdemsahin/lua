@@ -1,0 +1,28 @@
+============================================== 
+[22/02/2026 15:45:54.38] BAT started 
+Working directory: C:\projects\lua\marker_helpers\alt_w_s_enter\ 
+Script path: C:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.ps1 
+[2026-02-22 15:46:02] PS1 script started
+[2026-02-22 15:46:02] Loaded System.Windows.Forms
+[2026-02-22 15:46:05] DaVinci Resolve is running (PID: 2832060)
+[2026-02-22 15:46:05] Sending Alt key...
+[2026-02-22 15:46:05] Sending W key...
+[2026-02-22 15:46:06] Sending S key...
+[2026-02-22 15:46:06] Sending Enter key...
+[2026-02-22 15:46:06] All keystrokes sent successfully
+[22/02/2026 15:46:06.80] SUCCESS: PowerShell exited with code 0 
+============================================== 
+============================================== 
+[22/02/2026 15:46:55.98] BAT started 
+Working directory: C:\projects\lua\marker_helpers\alt_w_s_enter\ 
+Script path: C:\projects\lua\marker_helpers\alt_w_s_enter\alt_w_s_enter.ps1 
+[2026-02-22 15:47:07] PS1 script started
+[2026-02-22 15:47:07] Loaded System.Windows.Forms
+[2026-02-22 15:47:10] DaVinci Resolve is running (PID: 2832060)
+[2026-02-22 15:47:10] Sending Alt key...
+[2026-02-22 15:47:11] Sending W key...
+[2026-02-22 15:47:11] Sending S key...
+[2026-02-22 15:47:11] Sending Enter key...
+[2026-02-22 15:47:12] All keystrokes sent successfully
+[22/02/2026 15:47:12.12] SUCCESS: PowerShell exited with code 0 
+============================================== 
