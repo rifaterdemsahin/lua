@@ -1,0 +1,227 @@
+================================================================================
+MARKER EXPORT
+================================================================================
+Project:    feb 2
+Timeline:   main
+Frame Rate: 60.0 fps
+TL Start:   216000
+Exported:   2026-02-22 17:21:53
+Total:      85 markers
+================================================================================
+
+#     Frame      Abs Frame    Timecode       Color        Duration   Name
+————  —————————  ———————————  —————————————  ———————————  —————————  ————————————————————————————————————————
+1     1073       217073       01:00:17:53    Red          1          [scaring people off.]
+      Note:      disappear resolve
+2     1196       217196       01:00:19:56    Yellow       1          [Last week I made a decision.]
+      Note:      add no code no tech no money > dopamine detox and move to ikigai other
+3     2933       218933       01:00:48:53    Yellow       1          [to survive this billion dollar war.]
+      Note:      the glass and the barrier for her to come in marianna needs free and working
+4     4899       220899       01:01:21:39    Yellow       1          [The scene, the statue hall, the screen]
+      Note:      the frozen statues
+5     7424       223424       01:02:03:44    Red          1          [anti-gravity, using cloth]
+      Note:      cl;aude text subtitle error
+6     7579       223579       01:02:06:19    Red          1          [so everybody can scout their]
+      Note:      subtitle error scult your own reality
+7     8900       224900       01:02:28:20    Yellow       1          [The scene, the clone lab, the screen]
+      Note:      add mention lets start getting hands dirty!
+8     10069      226069       01:02:47:49    Yellow       1          Marker 18
+      Note:      delivery pilot way > video > assesment > check list > learn stages > visual add
+9     11897      227897       01:03:18:17    Yellow       1          [This is the way to go for the starters.]
+      Note:      show the github page as transition no tech background
+10    12404      228404       01:03:26:44    Yellow       1          [be able to do your job.]
+      Note:      show copilot in action as footage
+11    12929      228929       01:03:35:29    Yellow       1          [cursor AI makes more sense.]
+      Note:      mention the more you learn you can invest or use company resources
+12    12950      228950       01:03:35:50    Red          1          [cursor AI makes more sense.]
+      Note:      Top line there is a problem
+13    13305      229305       01:03:41:45    Yellow       1          [swap between each other.]
+      Note:      mention this depends on the timeline where you are > change with ai > now at kilocode > before i was with gemini
+14    14183      230183       01:03:56:23    Green        1          [yourself you are going to]
+      Note:      mentor gets cloned that is the key > people watch and learn
+15    15376      231376       01:04:16:16    Yellow       1          [to operate it on your local and how to]
+      Note:      add skills gaps and mention they jump from their status quo by cloning and implementing
+16    15664      231664       01:04:21:04    Yellow       1          [environment then it is time for]
+      Note:      show the visual move from poc to lab to cv and to enterprise pilot
+17    15763      231763       01:04:22:43    Red          1          [the room all the books all]
+      Note:      error to early cut
+18    15988      231988       01:04:26:28    Red          1          remove the drawing tool
+      Note:      remove the drawing tool
+19    17434      233434       01:04:50:34    Yellow       1          [so we can see all of]
+      Note:      add the system to show the website visuals
+
+20    19624      235624       01:05:27:04    Yellow       1          [minutes or you can get your own]
+      Note:      show the index pages i have created and the github pages this is the self learning part.
+21    20328      236328       01:05:38:48    Red          1          remove the subtitles here
+      Note:      no audio fix
+22    22236      238236       01:06:10:36    Yellow       1          [to be able to turn only one]
+      Note:      mention the best way to learn it is to use it naturally and not come up with artifcal uses cases 
+23    23202      239202       01:06:26:42    Red          1          better timing on the disapper act
+      Note:      better transition from erdem
+24    24645      240645       01:06:50:45    Red          1          Red Marker
+      Note:      what can we do with the ai > add the image our job is to find the use cases
+25    25114      241114       01:06:58:34    Yellow       1          Yellow Marker
+      Note:      logic and clone it use the template  > nmakle it yours and fix your issue.
+26    26547      242547       01:07:22:27    Yellow       1          [different skills, coding, reasoning,]
+      Note:      serenity prayer is the key we wount be able to every thing even there is ai and knowing what we can an what we cant do is the key
+27    29296      245296       01:08:08:16    Red          1          [is for you to figure out.]
+      Note:      there is an auio jumop make sure to resolve it 
+28    29874      245874       01:08:17:54    Red          1          [aero, the visual host]
+      Note:      too fast jump make it better
+
+29    30789      246789       01:08:33:09    Yellow       1          [We are in an ever]
+      Note:      mention the importance of the AI AND HANDSON THERE IS AGAP HUMANS NEEDS TO FILL IT > MACHINE LEARNING WE NEED TO TEACH THE ROBOTS.
+30    31322      247322       01:08:42:02    Yellow       1          [smartest operators in the room.]
+31    31995      247995       01:08:53:15    Blue         1          [The scene, the kitchen table, the screen]
+      Note:      bacgkground fix
+32    31998      247998       01:08:53:18    Red          1          [The scene, the kitchen table, the screen]
+      Note:      REMOVE THIS FACIAL EXPRESSIOON
+33    32143      248143       01:08:55:43    Red          1          [capture and the home network dashboard.]
+      Note:      SUBTITLE REMOVE
+34    32783      248783       01:09:06:23    Red          1          [organize, distill and]
+      Note:      audio increase check
+35    33164      249164       01:09:12:44    Blue         1          [for you while we are learning.]
+36    33775      249775       01:09:22:55    Cyan         1          [the first because]
+      Note:      move the internal curtain not to reveal all at once
+
+37    36941      252941       01:10:15:41    Yellow       1          [this by a Chrome extension.]
+      Note:      show the chromer extension
+
+38    37771      253771       01:10:29:31    Cyan         1          [you want to use it for]
+      Note:      mention not every coder would spend money oin claude.
+
+39    41057      257057       01:11:24:17    Red          1          [need to pay money for the cloud if my]
+      Note:      subtitle error fix
+
+40    41629      257629       01:11:33:49    Red          1          [different skills, coding, reasoning,]
+      Note:      remove the drwawing tool from the rioght
+
+41    42608      258608       01:11:50:08    Yellow       1          [use their mobile app as well.]
+      Note:      add footage for the mobile as well
+
+42    42771      258771       01:11:52:51    Yellow       1          [A visual, a kitchen table flowing with]
+      Note:      add a banner and add the hobby angle and the ai not professional but as a hiobby it is great
+
+43    43361      259361       01:12:02:41    Red          1          [This is a family oriented week.]
+      Note:      hobby visual
+44    44526      260526       01:12:22:06    Yellow       1          [build it using cloud, using]
+      Note:      
+add digital gatekeeper in here 
+
+45    44616      260616       01:12:23:36    Red          1          [DeepSeek.]
+46    44637      260637       01:12:23:57    Red          1          [DeepSeek.]
+47    44825      260825       01:12:27:05    Red          1          [to be in charge and you]
+      Note:      fix the sub title cl;aude in here 
+48    45497      261497       01:12:38:17    Red          1          [lightning bolt being]
+      Note:      add the music here make sure new scene is coming up
+
+49    46412      262412       01:12:53:32    Yellow       1          [This is your key moment.]
+      Note:      
+add the animation where people are learning not just wioth the ai but holding the hammer and delivering they are worth carring the hammer by being brave and self learnign
+50    46506      262506       01:12:55:06    Red          1          [You are going to see that you will be]
+      Note:      fix the greens in the hands
+
+51    47234      263234       01:13:07:14    Yellow       1          [capture, the github and the tool there.]
+      Note:      add a symbols the prerequisities what is needed to deliver
+
+52    47519      263519       01:13:11:59    Red          1          [Visual, all visual, a toolbox where the]
+      Note:      remove the visual line
+
+53    47897      263897       01:13:18:17    Red          1          [Internet Access Manager.]
+      Note:      remove the drawing board on the right
+
+54    48685      264685       01:13:31:25    Yellow       1          [solution for myself.]
+      Note:      add the bespoke solution what it is a custom solution in the past it was expensive to write now much cheaper with the rise of AI
+
+55    50246      266246       01:13:57:26    Yellow       1          [This is working behind my own system in]
+      Note:      integration slide to the devices in the flat
+
+56    50785      266785       01:14:06:25    Yellow       1          [this in a different way.]
+      Note:      show what is a router > and people have it at home and every router is not the same in terms of functionality > we would have different robnots coming in
+
+57    50849      266849       01:14:07:29    Red          1          [The main thing that I'm doing is I have]
+      Note:      remove the drawing tool on the right
+
+58    51329      267329       01:14:15:29    Red          1          [to be able to drop the traffic that I]
+      Note:      blurr the mac addresses and show and example 
+
+59    53234      269234       01:14:47:14    Red          1          [looking at the device list because this]
+      Note:      add a cookie bassed password protection
+
+60    53483      269483       01:14:51:23    Red          1          [and I have all the]
+      Note:      audio too low
+
+61    54052      270052       01:15:00:52    Yellow       1          [where she has got issues turning on and]
+      Note:      add the converge divergence and simplify the problems with the solutions > every night it turn off she can only turn it back on
+
+62    54282      270282       01:15:04:42    Red          1          [and make sure that you are always doing]
+      Note:      remove the drawing tool
+
+63    54636      270636       01:15:10:36    Red          1          [most of the time this works]
+      Note:      remove the right hand side drawing 
+
+64    57899      273899       01:16:04:59    Yellow       1          [able to see all my executions and when]
+      Note:      add a slide mention how does this evolve
+
+65    58168      274168       01:16:09:28    Red          1          [not work very, very easily.]
+      Note:      remove the drawing 
+
+66    58464      274464       01:16:14:24    Red          1          [here, something happened.] Marker 71
+      Note:      remove the drawing ttool on the right
+
+67    58519      274519       01:16:15:19    Blue         1          [I have updated the code base] Blue Marker
+      Note:      delete the drawing tool
+68    58902      274902       01:16:21:42    Red          1          [Normally it was working. I should be able] Marker 72
+      Note:      remove the drwaint toolklk
+69    58949      274949       01:16:22:29    Red          1          [to go down into the system and be able to] Marker 72
+      Note:      tester code
+70    60240      276240       01:16:44:00    Yellow       1          [make this work easier for myself.] Marker 71
+      Note:      iterative process is the key nobody knows where the ai goes. we are all learning
+
+71    61313      277313       01:17:01:53    Yellow       1          [off a specific device.] Marker 71
+      Note:      mention new features coming. kids grow up wife uses it better. Time moves on.
+72    62101      278101       01:17:15:01    Red          1          [shared this in other videos, you can] Marker 72
+      Note:      remove the painter
+73    62569      278569       01:17:22:49    Red          1          [of your workflows is failing, you will be]
+      Note:      remove the drawing tool
+
+74    62914      278914       01:17:28:34    Red          1          [I'm using the memory palaces.] Marker 74
+      Note:      audio jumps
+75    64074      280074       01:17:47:54    Yellow       1          [Find the things that is your own] Marker 75
+      Note:      slide comes in my use case and your use case is diffferent use mine to move on to yours as a template best learning comes from your own hands on that is meaningful
+76    64854      280854       01:18:00:54    Yellow       1          [for yourself, for your family.] Marker 76
+      Note:      start with free flicker and big
+77    65147      281147       01:18:05:47    Yellow       1          [GitHub toolbox for modern developers.]
+      Note:      with ai everyone is a developer banner and everyone can build apps
+78    69850      285850       01:19:24:10    Yellow       1          [the continuous integration] Marker 78
+      Note:      show always green trunk as keep the code safe > sanity level
+
+79    76484      292484       01:21:14:44    Red          1          [and understanding what is happening in the background the scene, the balcony, th...] Red Marker
+      Note:      remove the dead frame
+
+80    76925      292925       01:21:22:05    Red          1          [using the simulation]
+      Note:      remove bye bye ! get your hands working
+81    78319      294319       01:21:45:19    Red          1          [you are checking network authentication]
+      Note:      remove the drawing tool and add the blooms taxonomy to the delivery pilot website
+
+82    81552      297552       01:22:39:12    Red          1          [able to deploy a website] Marker 82
+      Note:      remove the drawing and add a dashboard image here
+
+83    83745      299745       01:23:15:45    Red          1          [what are my changes.]
+      Note:      remove the flicked moment of the background
+
+84    84146      300146       01:23:22:26    Red          1          [NA10 is very critical for]
+      Note:      n8n error on the sub title 
+
+85    87837      303837       01:24:23:57    Red          1          [till next time love bye] Marker 85
+      Note:      remove this expression
+
+
+================================================================================
+
+Color Breakdown:
+  Red             44
+  Yellow          35
+  Blue            3
+  Cyan            2
+  Green           1
