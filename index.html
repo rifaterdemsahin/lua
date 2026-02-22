@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lua DaVinci Resolve Automation</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+      padding: 2.5rem 1rem;
+      text-align: center;
+      border-bottom: 2px solid #e94560;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      color: #e94560;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      color: #a8b2d8;
+      font-size: 1.05rem;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 2.5rem auto;
+      padding: 0 1rem;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      color: #ccd6f6;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: #16213e;
+      border: 1px solid #0f3460;
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, transform 0.15s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .card:hover {
+      border-color: #e94560;
+      transform: translateY(-2px);
+    }
+
+    .card-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #e94560;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #ccd6f6;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: #a8b2d8;
+    }
+
+    .card-link {
+      font-size: 0.8rem;
+      color: #e94560;
+      margin-top: 0.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #4a5568;
+      font-size: 0.85rem;
+      border-top: 1px solid #16213e;
+      margin-top: 3rem;
+    }
+
+    footer a { color: #e94560; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🎬 Lua DaVinci Resolve Automation</h1>
+  <p>Practical Lua scripts for automating DaVinci Resolve video production pipelines</p>
+</header>
+
+<main>
+  <h2>Explore the Sections</h2>
+
+  <div class="grid">
+
+    <a class="card" href="3_Simulation/index.html#objectives">
+      <span class="card-num">Section 1</span>
+      <span class="card-title">Real Unknown — Objectives</span>
+      <span class="card-desc">OKRs and goals: automate repetitive DaVinci Resolve tasks so editors focus on creative work.</span>
+      <span class="card-link">View objectives →</span>
+    </a>
+
+    <a class="card" href="3_Simulation/index.html#environment">
+      <span class="card-num">Section 2</span>
+      <span class="card-title">Environment — Setup &amp; Use Cases</span>
+      <span class="card-desc">Requirements, install paths, Python version, environment variables, and Stream Deck configuration.</span>
+      <span class="card-link">View environment →</span>
+    </a>
+
+    <a class="card" href="3_Simulation/index.html#examples">
+      <span class="card-num">Section 3</span>
+      <span class="card-title">Simulation — Examples</span>
+      <span class="card-desc">Minimal runnable examples: chapter titles, reading the last marker, and auto-fill from subtitles.</span>
+      <span class="card-link">View examples →</span>
+    </a>
+
+    <a class="card" href="3_Simulation/index.html#guide">
+      <span class="card-num">Section 4</span>
+      <span class="card-title">Formula — Steps &amp; Best Practices</span>
+      <span class="card-desc">Step-by-step guide, playhead placement, marker naming conventions, and fade-frame settings.</span>
+      <span class="card-link">View guide →</span>
+    </a>
+
+    <a class="card" href="3_Simulation/index.html#scripts">
+      <span class="card-num">Section 5</span>
+      <span class="card-title">Symbols — Full Script Source</span>
+      <span class="card-desc">Complete source for <code>chaptermarkers.lua</code> and <code>fill_last_marker.lua</code> with copy buttons.</span>
+      <span class="card-link">View scripts →</span>
+    </a>
+
+    <a class="card" href="3_Simulation/index.html#errors">
+      <span class="card-num">Section 6</span>
+      <span class="card-title">Semblance — Error Logs &amp; Solutions</span>
+      <span class="card-desc">Common error messages, their causes, and step-by-step fixes.</span>
+      <span class="card-link">View error guide →</span>
+    </a>
+
+    <a class="card" href="3_Simulation/index.html#testing">
+      <span class="card-num">Section 7</span>
+      <span class="card-title">Testing Known — Validation</span>
+      <span class="card-desc">Acceptance criteria and manual test steps to verify scripts work correctly.</span>
+      <span class="card-link">View testing →</span>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  <p>Lua DaVinci Resolve Automation · <a href="https://github.com/rifaterdemsahin/lua">GitHub</a></p>
+</footer>
+
+</body>
+</html>
